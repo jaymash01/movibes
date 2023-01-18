@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/movibes/static/js/main.deaeef1b.js",
+    "main.js": "/movibes/static/js/main.e1f40709.js",
     "static/js/787.6687866e.chunk.js": "/movibes/static/js/787.6687866e.chunk.js",
     "static/media/avatar.jpg": "/movibes/static/media/avatar.8029e4b8714f1ed5faf8.jpg",
     "index.html": "/movibes/index.html",
-    "main.deaeef1b.js.map": "/movibes/static/js/main.deaeef1b.js.map",
+    "main.e1f40709.js.map": "/movibes/static/js/main.e1f40709.js.map",
     "787.6687866e.chunk.js.map": "/movibes/static/js/787.6687866e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.deaeef1b.js"
+    "static/js/main.e1f40709.js"
   ]
 }

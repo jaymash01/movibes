@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -13,30 +14,42 @@ import {
   Typography
 } from "@mui/material";
 import { InfoRounded as InfoIcon, PlayArrowRounded as PlayIcon } from "@mui/icons-material";
-import Modal from "../../components/Modal";
-import PosterBase from "../../components/PosterBase";
-import MovieCard from "../../components/MovieCard";
-
-import { useTheme } from "@mui/material/styles";
-import { useFetch, useToast } from "../../hooks";
-import { formatError } from "../../helpers";
-import { BASE_POSTER_URL } from "../../constants";
+import Modal from "../components/Modal";
+import PosterBase from "../components/PosterBase";
+import MovieCard from "../components/MovieCard";
+import { useFetch, useToast } from "../hooks";
+import { formatError } from "../helpers";
+import { BASE_POSTER_URL } from "../constants";
 
 const Dashboard = () => {
 
-  const theme = useTheme();
   const addToast = useToast();
-
+  const navigate = useNavigate();
   const modalRef = useRef();
 
   const [params, setParams] = useState({
-    //genres: 0,
+    //genre_ids: [],
   });
 
-  const { data: nowPlaying, loading: loadingNowPlaying, error: errorLoadingNowPlaying } = useFetch("movie/now_playing", null, true, null, (response) => response.data.results[0]);
-  const { data: genres, loading: loadingGenres, error: errorLoadingGenres } = useFetch("genre/movie/list", params, true, [], (response) => response.data.genres);
-  const { data: trending, loading: loadingTrending, error: errorLoadingTrending } = useFetch("movie/popular", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
-  const { data: upcoming, loading: loadingUpcoming, error: errorLoadingUpcoming } = useFetch("movie/upcoming", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
+  const {
+    data: nowPlaying,
+    loading: loadingNowPlaying,
+    error: errorLoadingNowPlaying
+  } = useFetch("movie/now_playing", null, true, null, (response) => response.data.results[0]);
+  const {
+    data: genres,
+    loading: loadingGenres
+  } = useFetch("genre/movie/list", params, true, [], (response) => response.data.genres);
+  const {
+    data: trending,
+    loading: loadingTrending,
+    error: errorLoadingTrending
+  } = useFetch("movie/popular", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
+  const {
+    data: upcoming,
+    loading: loadingUpcoming,
+    error: errorLoadingUpcoming
+  } = useFetch("movie/upcoming", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
 
   useEffect(() => {
     document.title = `Dashboard - ${window.APP_NAME}`;
@@ -124,6 +137,7 @@ const Dashboard = () => {
             <Skeleton
               variant="rounded"
               height={360}
+              sx={{ mt: 2 }}
             />
             : null
           }
@@ -139,10 +153,12 @@ const Dashboard = () => {
                   <Button
                     color="neutral"
                     sx={{ textTransform: "none" }}
+                    onClick={() => navigate("/movies")}
                   >
                     View all
                   </Button>
                 )}
+                sx={{ px: 0 }}
               />
               <Grid
                 container
@@ -156,7 +172,10 @@ const Dashboard = () => {
                     sm={6}
                     xs={12}
                   >
-                    <MovieCard movie={e}/>
+                    <MovieCard
+                      movie={e}
+                      onClick={() => navigate(`/movies/${e.id}`)}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -168,6 +187,7 @@ const Dashboard = () => {
             <Skeleton
               variant="rounded"
               height={360}
+              sx={{ mt: 2 }}
             />
             : null
           }
@@ -183,10 +203,12 @@ const Dashboard = () => {
                   <Button
                     color="neutral"
                     sx={{ textTransform: "none" }}
+                    onClick={() => navigate("/movies/upcoming")}
                   >
                     View all
                   </Button>
                 )}
+                sx={{ px: 0 }}
               />
               <Grid
                 container
@@ -200,7 +222,10 @@ const Dashboard = () => {
                     sm={6}
                     xs={12}
                   >
-                    <MovieCard movie={e}/>
+                    <MovieCard
+                      movie={e}
+                      onClick={() => navigate(`/movies/${e.id}`)}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -224,23 +249,26 @@ const Dashboard = () => {
           }
           {genres.length ?
             <React.Fragment>
+              <CardHeader
+                title="Categories"
+                titleTypographyProps={{
+                  variant: "h6",
+                  fontWeight: 500,
+                }}
+                action={(
+                  <Button
+                    color="neutral"
+                    sx={{ textTransform: "none" }}
+                  >
+                    Check all
+                  </Button>
+                )}
+                sx={{
+                  px: 0,
+                  pt: 0,
+                }}
+              />
               <Card>
-                <CardHeader
-                  title="Categories"
-                  titleTypographyProps={{
-                    variant: "h6",
-                    fontWeight: 500,
-                  }}
-                  action={(
-                    <Button
-                      color="neutral"
-                      sx={{ textTransform: "none" }}
-                    >
-                      Check all
-                    </Button>
-                  )}
-                  sx={{ px: 3 }}
-                />
                 <CardContent sx={{ px: 3 }}>
                   {genres.filter((e, i) => i < 5).map((e) => (
                     <FormControlLabel
@@ -283,23 +311,23 @@ const Dashboard = () => {
             : null
           }
 
-          <Card sx={{ mt: 2 }}>
-            <CardHeader
-              title="Services"
-              titleTypographyProps={{
-                variant: "h6",
-                fontWeight: 500,
-              }}
-              action={(
-                <Button
-                  color="neutral"
-                  sx={{ textTransform: "none" }}
-                >
-                  Check all
-                </Button>
-              )}
-              sx={{ px: 3 }}
-            />
+          <CardHeader
+            title="Services"
+            titleTypographyProps={{
+              variant: "h6",
+              fontWeight: 500,
+            }}
+            action={(
+              <Button
+                color="neutral"
+                sx={{ textTransform: "none" }}
+              >
+                Check all
+              </Button>
+            )}
+            sx={{ px: 0 }}
+          />
+          <Card>
             <CardContent sx={{ px: 3 }}>
               {[
                 { id: 1, name: "Netflix" },

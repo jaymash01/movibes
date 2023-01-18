@@ -1,72 +1,105 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import { alpha, useTheme } from "@mui/material/styles";
+import { alpha, styled, useTheme } from "@mui/material/styles";
 import {
-  AppBar,
+  AppBar as MuiAppBar,
   Avatar,
+  Badge,
   Box,
-  Card,
-  CardHeader,
-  Container,
-  Divider,
+  Button,
+  CircularProgress,
   Drawer,
   IconButton,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  MenuList,
   Modal as MuiModal,
   Paper,
-  Popover,
-  Stack,
   ThemeProvider,
   Toolbar,
   Tooltip,
   Typography,
   useMediaQuery
 } from "@mui/material";
+import { LightModeOutlined as LightModeIcon } from "@mui/icons-material";
 import {
-  ExpandMoreRounded as ExpandMoreIcon,
-  LightModeOutlined as LightModeIcon,
-  MoreVert as MoreIcon
-} from "@mui/icons-material";
-import { Avatar as AvatarIcon, Heart as HeartIcon, Menu as MenuIcon, Moon as DarkModeIcon } from "../components/icons";
+  Menu as MenuIcon,
+  Moon as DarkModeIcon,
+  Notifications as NotificationsIcon,
+  Ticket as TicketIcon
+} from "../components/icons";
 
-import styled from "@mui/material/styles/styled";
-import darkTheme from "../themes/dark";
 import Menu from "../components/Menu";
+import Search from "../components/Search";
 import Modal from "../components/Modal";
-import ChangePassword from "../pages/auth/ChangePassword";
-import loader from "../../images/loader.svg";
-import logoOnPrimary from "../../images/logo-on-primary.png";
-import { useFetch } from "../hooks";
-import { getNonNull } from "../helpers";
+import logo from "../images/logo.png";
+import darkTheme from "../themes/dark";
 
 const drawerWidth = 240;
+const drawerOpenedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: "hidden",
+  borderTopRightRadius: theme.spacing(4),
+});
 
-const FloatingActions = styled("div")(({ theme, parentTheme }) => ({
-  backgroundColor: parentTheme.palette.mode === "light" ?
-    parentTheme.palette.primary.main : parentTheme.palette.background.paper,
-  borderRadius: `${parentTheme.shape.borderRadius}px 0 0 ${parentTheme.shape.borderRadius}px`,
-  boxShadow: theme.shadows[8],
-  position: "fixed",
-  right: 0,
-  top: "50%",
-  marginTop: "-1em",
-  zIndex: parentTheme.zIndex.drawer - 1,
-  padding: parentTheme.spacing(1),
-  "& .MuiIconButton-root": {
-    border: `1px solid ${theme.palette.divider}`,
-  },
-  ...(parentTheme.palette.mode === "dark" && {
-    border: `1px solid ${parentTheme.palette.divider}`,
-    borderRightWidth: 0,
+const drawerClosedMixin = (theme) => ({
+  width: 0,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  whiteSpace: "nowrap",
+});
+
+const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    zIndex: theme.zIndex.drawer - 1,
+    [theme.breakpoints.up("md")]: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   }),
 }));
 
-const Default = ({ setThemeMode, setUser }) => {
+const PromotionContainer = styled(Paper, {
+  shouldForwardProp: (prop) => prop !== "parentTheme"
+})(({ theme, parentTheme }) => ({
+  padding: theme.spacing(2),
+  paddingTop: theme.spacing(4),
+  position: "relative",
+  margin: theme.spacing(3),
+  backgroundColor: parentTheme.palette.mode === "light" ?
+    theme.palette.background.paper : theme.palette.background.default,
+}));
+
+const PromotionIconContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "absolute",
+  width: "48px",
+  height: "48px",
+  top: "-24px",
+  left: "50%",
+  marginLeft: "-24px",
+  backgroundColor: alpha(theme.palette.primary.main, 0.88),
+  borderRadius: "24px",
+  zIndex: 5,
+}));
+
+const Default = ({ setThemeMode }) => {
 
   const modalRef = useRef();
   const navigate = useNavigate();
@@ -74,26 +107,28 @@ const Default = ({ setThemeMode, setUser }) => {
   const breakpointDownMedium = useMediaQuery(theme.breakpoints.down("md"));
   const breakpointUpMedium = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const { data: user, loading: loadingUser } = useFetch("api/user");
+  const [user, setUser] = useState({
+    name: "Joseph Mashauri"
+  });
 
   const [appReady, setAppReady] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-  const [accountMenuAnchorEl, setAccountMenuAnchorEl] = useState();
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
 
   useEffect(() => {
-    setLoading(loadingUser);
-  }, [loadingUser]);
+    window.setTimeout(() => setLoading(false), 1500);
+  }, []);
 
   useEffect(() => {
     if (user) {
-      window.user = user;
-      setUser(user);
-      setAppReady(true);
+      if (!loading) {
+        window.user = user;
+        setUser(user);
+        setAppReady(true);
+      }
     }
-  }, [user]);
+  }, [user, loading]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -106,165 +141,80 @@ const Default = ({ setThemeMode, setUser }) => {
     setThemeMode(themeMode);
   };
 
-  const handleAccountMenuOpen = (event) => {
-    setAccountMenuAnchorEl(event.currentTarget);
-    setIsAccountMenuOpen(true);
-  };
-
-  const handleAccountMenuClose = () => {
-    setIsAccountMenuOpen(false);
-    setAccountMenuAnchorEl(null);
-  };
-
-  const openChangePasswordModal = () => {
-    let component = (
-      <ChangePassword modal={modalRef.current}/>
-    );
-
-    modalRef.current.open("Change Password", component);
-  };
-
-  const handleLogout = () => {
-    window.localStorage.clear();
-    navigate("/login");
-  };
-
   return (
     <React.Fragment>
       {appReady ?
         <React.Fragment>
-          <ThemeProvider theme={darkTheme}>
-            <AppBar
-              color="primary"
-              position="fixed"
-              elevation={0}
-              sx={{
-                zIndex: theme.zIndex.drawer + 1,
-                bgcolor: theme.palette.mode === "light" ? theme.palette.primary.main : "background.paper",
-                "& .MuiIconButton-root": {
-                  border: (theme1) => `1px solid ${theme1.palette.divider}`
-                }
-              }}
-            >
-              <Container disableGutters>
-                <Toolbar>
-                  <Tooltip title="Toggle menu">
-                    <IconButton
-                      sx={{
-                        mr: 2,
-                        display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
-                      }}
-                      onClick={toggleDrawer}
-                    >
-                      <MenuIcon />
-                    </IconButton>
-                  </Tooltip>
+          <AppBar
+            open={isDrawerOpen}
+            color="transparent"
+            position="fixed"
+            elevation={0}
+            sx={{
+              bgcolor: "background.default",
+              "& .MuiIconButton-root": {
+                bgcolor: (theme1) => theme1.palette.background.paper,
+              }
+            }}
+          >
+            <Toolbar>
+              <Tooltip title="Toggle menu">
+                <IconButton
+                  sx={{ mr: 2 }}
+                  onClick={toggleDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Tooltip>
 
-                  <Box
-                    component="img"
-                    src={logoOnPrimary}
-                    alt="Logo"
-                    height={36}
-                  />
+              <Box
+                component="img"
+                src={logo}
+                alt="Logo"
+                height={24}
+                display={{ xs: "block", sm: "block", md: "none" }}
+              />
 
-                  <Box flexGrow={1}/>
+              <Search />
 
-                  <Menu
-                    highlightColor={theme.palette.info.main}
-                    user={user}
-                    sx={{
-                      display: { xs: "none", sm: "none", md: "flex" },
-                      "& .MuiListItemButton-root": {
-                        mx: 0.5,
-                      },
-                      "& > .MuiListItemButton-root": {
-                        bgcolor: (theme1) => alpha(theme1.palette.black.main, 0.18),
-                      },
-                      "& > .multilevel-item": {
-                        position: "relative",
-                        "& > .MuiListItemButton-root": {
-                          bgcolor: (theme1) => alpha(theme1.palette.black.main, 0.18),
-                        },
-                        "& > .MuiCollapse-root": {
-                          position: "absolute",
-                          width: drawerWidth,
-                          top: `calc(${theme.mixins.toolbar.minHeight}px - 12px)`,
-                          left: 0,
-                          bgcolor: theme.palette.mode === "light" ? theme.palette.primary.main: "background.paper",
-                          border: (theme1) => `1px solid ${theme1.palette.divider}`,
-                          boxShadow: (theme1) => theme1.shadows[8],
-                          borderRadius: `${theme.shape.borderRadius}px`,
-                          "& > .MuiCollapse-wrapper > .MuiCollapse-wrapperInner > .MuiList-root": {
-                            pl: 0,
-                          },
-                          "& .MuiListItemButton-root": {
-                            mx: { xs: 1, sm: 1, md: 1.5 },
-                          }
-                        }
-                      }
-                    }}
-                  />
+              <Box flexGrow={1}/>
 
-                  <ListItemButton
-                    dense
-                    onClick={handleAccountMenuOpen}
-                    sx={{
-                      display: { xs: "none", sm: "none", md: "flex" },
-                      flexGrow: 0,
-                      bgcolor: (theme1) => alpha(theme1.palette.black.main, 0.18),
-                      "&:hover, &.Mui-selected": {
-                        color: theme.palette.info.main,
-                        bgcolor: alpha(theme.palette.info.main, 0.08),
+              <Tooltip title={theme.palette.mode === "light" ? "Enable dark mode" : "Disable dark mode"}>
+                <IconButton
+                  sx={{ mx: 2 }}
+                  onClick={toggleTheme}
+                >
+                  {theme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+                </IconButton>
+              </Tooltip>
 
-                        "& .MuiListItemIcon-root": {
-                          color: "inherit",
-                        }
-                      },
-                      borderRadius: theme.shape.borderRadius,
-                      ml: 0.5,
-                      px: { xs: 1, sm: 1, md: 1.5 },
-                    }}
+              <Tooltip title="Notifications">
+                <IconButton sx={{ mr: 2 }}>
+                  <Badge
+                    badgeContent="2"
+                    color="error"
                   >
-                    <ListItemIcon sx={{ minWidth: 28 }}>
-                      <AvatarIcon fontSize="small"/>
-                    </ListItemIcon>
-                    <ListItemText primary="Me"/>
-                    <ExpandMoreIcon sx={{ ml: 0.5 }}/>
-                  </ListItemButton>
+                    <NotificationsIcon color="action"/>
+                  </Badge>
+                </IconButton>
+              </Tooltip>
 
-                  <Tooltip title={theme.palette.mode === "light" ? "Enable dark mode" : "Disable dark mode"}>
-                    <IconButton
-                      sx={{
-                        ml: 2,
-                        display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
-                      }}
-                      onClick={toggleTheme}
-                    >
-                      {theme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
-                    </IconButton>
-                  </Tooltip>
-
-                  <IconButton
-                    sx={{
-                      ml: 2,
-                      display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
-                    }}
-                    onClick={handleAccountMenuOpen}
-                  >
-                    <MoreIcon />
-                  </IconButton>
-                </Toolbar>
-              </Container>
-              <Divider />
-            </AppBar>
-          </ThemeProvider>
+              <Avatar>
+                <Box
+                  component="img"
+                  src="/images/avatar.jpg"
+                  alt=""
+                />
+              </Avatar>
+            </Toolbar>
+          </AppBar>
 
           {/* Drawer for small screens */}
           {breakpointDownMedium ?
             <Drawer
               container={() => window.document.body}
               variant="temporary"
-              open={isDrawerOpen}
+              open={!isDrawerOpen}
               ModalProps={{
                 keepMounted: true,
                 disableScrollLock: true,
@@ -277,9 +227,16 @@ const Default = ({ setThemeMode, setUser }) => {
               }}
               onClose={toggleDrawer}
             >
-              <Toolbar />
+              <Toolbar>
+                <Box
+                  component="img"
+                  src={logo}
+                  alt="Logo"
+                  height={28}
+                />
+              </Toolbar>
               <Menu
-                highlightColor={theme.palette.info.main}
+                highlightColor={theme.palette.primary.main}
                 setDrawerOpen={setIsDrawerOpen}
                 user={user}
               />
@@ -288,131 +245,118 @@ const Default = ({ setThemeMode, setUser }) => {
           }
           {/*****/}
 
-          <Container
-            component="main"
-            sx={{
-              minHeight: "100vh",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Toolbar />
-            <Box flexGrow={1}>
-              <Outlet />
-            </Box>
-            <Paper
-              variant="outlined-elevated"
-              sx={{
-                px: 2,
-                mb: 2,
-              }}
-            >
-              <Toolbar disableGutters>
-                <Typography
-                  textAlign="center"
-                  flexGrow={1}
-                >
-                  &copy; {new Date().getFullYear()}. Developed with <HeartIcon /> by DigitCodes.
-                </Typography>
-              </Toolbar>
-            </Paper>
-          </Container>
-
-          {breakpointUpMedium ?
-            <ThemeProvider theme={darkTheme}>
-              <FloatingActions parentTheme={theme}>
-                <Stack
-                  direction="column"
-                  spacing={1}
-                >
-                  <Tooltip title={theme.palette.mode === "light" ? "Enable dark mode" : "Disable dark mode"}>
-                    <IconButton
-                      size="small"
-                      onClick={toggleTheme}
-                    >
-                      {theme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
-                    </IconButton>
-                  </Tooltip>
-                </Stack>
-              </FloatingActions>
-            </ThemeProvider>
-            : null
-          }
-
-          <Popover
-            anchorEl={accountMenuAnchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            open={isAccountMenuOpen}
-            onClose={handleAccountMenuClose}
-          >
-            <Card sx={{ width: 250 }}>
-              <CardHeader
-                title={user.full_name}
-                subheader={getNonNull(user.department).name}
-                titleTypographyProps={{
-                  variant: "subtitle1",
-                  fontWeight: "500",
-                  noWrap: true,
+          <Box sx={{ display: "flex" }}>
+            {/* Drawer for large screens */}
+            {breakpointUpMedium ?
+              <Drawer
+                variant="permanent"
+                open={isDrawerOpen}
+                ModalProps={{ disableScrollLock: true }}
+                sx={{
+                  width: drawerWidth,
+                  flexShrink: 0,
+                  ...(isDrawerOpen && {
+                    ...drawerOpenedMixin(theme),
+                    "& .MuiDrawer-paper": {
+                      ...drawerOpenedMixin(theme),
+                      borderRightWidth: 0,
+                    },
+                  }),
+                  ...(!isDrawerOpen && {
+                    ...drawerClosedMixin(theme),
+                    "& .MuiDrawer-paper": {
+                      ...drawerClosedMixin(theme),
+                      borderRightWidth: 0,
+                    },
+                  })
                 }}
-                subheaderTypographyProps={{ noWrap: true }}
-                avatar={(
-                  <Avatar>
-                    <AvatarIcon />
-                  </Avatar>
-                )}
-              />
-              <Divider />
-              <MenuList dense>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    role={undefined}
-                    onClick={() => {
-                      handleAccountMenuClose();
-                      openChangePasswordModal();
-                    }}
-                  >
-                    <ListItemText>Change Password</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    role={undefined}
-                    onClick={() => {
-                      handleAccountMenuClose();
-                      handleLogout();
-                    }}
-                  >
-                    <ListItemText>Logout</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              </MenuList>
-            </Card>
-          </Popover>
+              >
+                <Toolbar>
+                  <Box
+                    component="img"
+                    src={logo}
+                    alt="Logo"
+                    width={128}
+                  />
+                </Toolbar>
+                <Menu
+                  highlightColor={theme.palette.primary.main}
+                  drawerOpen={isDrawerOpen}
+                  user={user}
+                />
+                <Box flexGrow={1}/>
+                <ThemeProvider theme={darkTheme}>
+                  <PromotionContainer parentTheme={theme}>
+                    <PromotionIconContainer>
+                      <TicketIcon />
+                    </PromotionIconContainer>
+
+                    <Typography variant="subtitle1">
+                      Play movie quizes and earn free tickets
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      mt={1}
+                    >
+                      50k people are playing now
+                    </Typography>
+
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        display: "flex",
+                        mt: 2,
+                        mx: "auto",
+                      }}
+                    >
+                      Play now
+                    </Button>
+                  </PromotionContainer>
+                </ThemeProvider>
+              </Drawer>
+              : null
+            }
+            {/*****/}
+
+            <Box
+              component="main"
+              flexGrow={1}
+              minHeight="100vh"
+              overflow="auto"
+              display="flex"
+              flexDirection="column"
+              px={{ xs: 2, sm: 2, md: 3 }}
+              py={2}
+            >
+              <Toolbar />
+              <Box flexGrow={1}>
+                <Outlet />
+              </Box>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                align="center"
+                pt={3}
+              >
+                &copy; {new Date().getFullYear()} {window.APP_NAME}
+              </Typography>
+            </Box>
+          </Box>
         </React.Fragment>
         : null
       }
 
       <Modal ref={modalRef}/>
-      <MuiModal
-        open={loading}
-        hideBackdrop
-      >
+      <MuiModal open={loading}>
         <Box
           display="flex"
           height="100vh"
           alignItems="center"
           justifyContent="center"
         >
-          <Box
-            component="img"
-            src={loader}
-            alt=""
-            width={96}
-            height={96}
-          />
+          <CircularProgress size={96}/>
         </Box>
       </MuiModal>
     </React.Fragment>

@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { BASE_API_URL } from "../constants";
 
 const useFetch = (uri, params = null, fetchOnMount = true, initialData = null, callback = null) => {
+
+  params = { api_key: "1fc89cfcfd77b6ec5f1b735bce27dc4a", ...params };
 
   const ignore = useRef(false);
   const [data, setData] = useState(initialData);
@@ -13,7 +16,7 @@ const useFetch = (uri, params = null, fetchOnMount = true, initialData = null, c
     setLoading(true);
     setError(null);
 
-    window.axios.get("/" + uri, { params })
+    window.axios.get(BASE_API_URL + uri, { params })
       .then((response) => {
         if (!ignore.current) {
           setData(callback ? callback(response) : response.data);

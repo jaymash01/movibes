@@ -1,23 +1,41 @@
 import React from "react";
 import { createSvgIcon } from "@mui/material";
 
-const StockSettings = createSvgIcon(
+const TvPlay = createSvgIcon(
   <svg
     width="24px"
     height="24px"
-    viewBox="0 0 24 24"
-    fill="currentColor"
+    viewBox="0 0 32 32"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="7" cy="20.75" r="2"/>
-    <circle cx="21" cy="20.75" r="2"/>
-    <rect height="7" rx="1" ry="1" width="7" x="7" y="7.75"/>
-    <rect height="7" rx="1" ry="1" width="7" x="15.5" y="7.75"/>
-    <rect height="5" rx="1" ry="1" width="8" x="11" y="1.25"/>
-    <path d="M23,16.25H5.5v-12c0-.014-.008-.027-.009-.041s.009-.027.009-.042A1.419,1.419,0,0,0,4.083,2.75H1a1,1,0,0,0,0,2H3.5v11.5a2,2,0,0,0,2,2H23a1,1,0,0,0,0-2Z"/>
+    <path
+      d="M30,24L30,24c-9.3-1.3-18.7-1.3-28,0l0,0V6l0,0c9.3,1.3,18.7,1.3,28,0l0,0V24z"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+    />
+    <path
+      d="M24.7,28c-0.9-2.9-4.5-5-8.7-5c-4.3,0-7.8,2.1-8.7,5"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+    />
+    <path
+      d="M13,12V18c0,0.7,0.9,1.2,1.5,0.8l5-3c0.6-0.4,0.6-1.2,0-1.6l-5-3C13.9,10.7,13,11.2,13,12z"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+    />
   </svg>
   ,
-  "StockSettings"
+  "TvPlay"
 );
 
-export default StockSettings;
+export default TvPlay;

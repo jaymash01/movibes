@@ -16,11 +16,10 @@ import { ChevronLeftRounded as ChevronLeftIcon, ChevronRightRounded as ChevronRi
 
 import Modal from "../../components/Modal";
 import MovieCard from "../../components/MovieCard";
-import Select from "../../components/Select";
 import { useFetch, useToast } from "../../hooks";
-import { formatError, getReleaseDate, getYearOptions } from "../../helpers";
+import { formatError, getReleaseDate } from "../../helpers";
 
-const Movies = () => {
+const Upcoming = () => {
 
   const addToast = useToast();
   const navigate = useNavigate();
@@ -30,7 +29,6 @@ const Movies = () => {
 
   const [params, setParams] = useState({
     page: 1,
-    year: undefined,
     genre_ids: undefined,
   });
 
@@ -39,12 +37,14 @@ const Movies = () => {
     genre_ids: filterGenres.join(","),
   }, true, [], (response) => response.data.genres);
   const {
-    data, loading,
-    error, handleFetch
-  } = useFetch("discover/movie", params, true, { page: 1, results: [] }, (response) => response.data);
+    data,
+    loading,
+    error,
+    handleFetch
+  } = useFetch("movie/upcoming", params, true, { page: 1, results: [] }, (response) => response.data);
 
   useEffect(() => {
-    document.title = `Dashboard - ${window.APP_NAME}`;
+    document.title = `Upcoming - ${window.APP_NAME}`;
   }, []);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Movies = () => {
   return (
     <React.Fragment>
       <CardHeader
-        title="Movies"
+        title="Upcoming"
         titleTypographyProps={{
           variant: "h5",
           fontWeight: 500,
@@ -85,15 +85,6 @@ const Movies = () => {
             color={filterGenres.indexOf(e.id) !== -1 ? "primary" : "default" }
             onClick={() => toggleGenre(e)}/>
         ))}
-        <Select
-          fullWidth
-          placeholder="Year"
-          options={getYearOptions()}
-          clearable
-          value={params.year || null}
-          sx={{ "& .MuiInputBase-root.MuiInputBase-sizeSmall": { py: "4px" } }}
-          onChange={(value) => setParams({ ...params, year: value })}
-        />
       </Stack>
 
       <Grid
@@ -110,7 +101,7 @@ const Movies = () => {
           >
             <MovieCard
               movie={e}
-              onClick={() => navigate(`/movies/${e.id}/details`)}
+              onClick={() => navigate(`/movies/${e.id}`)}
             >
               <Box
                 mt={1}
@@ -190,4 +181,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Upcoming;

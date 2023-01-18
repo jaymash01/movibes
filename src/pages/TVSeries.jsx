@@ -14,13 +14,12 @@ import {
 } from "@mui/material";
 import { ChevronLeftRounded as ChevronLeftIcon, ChevronRightRounded as ChevronRightIcon } from "@mui/icons-material";
 
-import Modal from "../../components/Modal";
-import MovieCard from "../../components/MovieCard";
-import Select from "../../components/Select";
-import { useFetch, useToast } from "../../hooks";
-import { formatError, getReleaseDate, getYearOptions } from "../../helpers";
+import Modal from "../components/Modal";
+import MovieCard from "../components/MovieCard";
+import { useFetch, useToast } from "../hooks";
+import { formatError, getReleaseDate } from "../helpers";
 
-const Movies = () => {
+const TVSeries = () => {
 
   const addToast = useToast();
   const navigate = useNavigate();
@@ -34,17 +33,19 @@ const Movies = () => {
     genre_ids: undefined,
   });
 
-  const { data: genres } = useFetch("genre/movie/list", {
+  const { data: genres } = useFetch("genre/tv/list", {
     ...params,
     genre_ids: filterGenres.join(","),
   }, true, [], (response) => response.data.genres);
   const {
-    data, loading,
-    error, handleFetch
-  } = useFetch("discover/movie", params, true, { page: 1, results: [] }, (response) => response.data);
+    data,
+    loading,
+    error,
+    handleFetch
+  } = useFetch("discover/tv", params, true, { page: 1, results: [] }, (response) => response.data);
 
   useEffect(() => {
-    document.title = `Movies - ${window.APP_NAME}`;
+    document.title = `TV Series - ${window.APP_NAME}`;
   }, []);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const Movies = () => {
   return (
     <React.Fragment>
       <CardHeader
-        title="Movies"
+        title="TV Series"
         titleTypographyProps={{
           variant: "h5",
           fontWeight: 500,
@@ -85,15 +86,6 @@ const Movies = () => {
             color={filterGenres.indexOf(e.id) !== -1 ? "primary" : "default" }
             onClick={() => toggleGenre(e)}/>
         ))}
-        <Select
-          fullWidth
-          placeholder="Year"
-          options={getYearOptions()}
-          clearable
-          value={params.year || null}
-          sx={{ "& .MuiInputBase-root.MuiInputBase-sizeSmall": { py: "4px" } }}
-          onChange={(value) => setParams({ ...params, year: value })}
-        />
       </Stack>
 
       <Grid
@@ -108,10 +100,7 @@ const Movies = () => {
             sm={6}
             xs={12}
           >
-            <MovieCard
-              movie={e}
-              onClick={() => navigate(`/movies/${e.id}`)}
-            >
+            <MovieCard movie={e}>
               <Box
                 mt={1}
                 px={2}
@@ -121,7 +110,7 @@ const Movies = () => {
                   noWrap
                   color="text.primary"
                 >
-                  {e.original_title}
+                  {e.name}
                 </Typography>
                 <Stack
                   direction="row"
@@ -137,7 +126,7 @@ const Movies = () => {
                     variant="body2"
                     color="text.secondary"
                   >
-                    {getReleaseDate(e.release_date)}
+                    {e.first_air_date ? getReleaseDate(e.first_air_date) : ""}
                   </Typography>
                 </Stack>
               </Box>
@@ -190,4 +179,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default TVSeries;

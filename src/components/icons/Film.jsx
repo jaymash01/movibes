@@ -1,7 +1,7 @@
 import React from "react";
 import { createSvgIcon } from "@mui/material";
 
-const Abacus = createSvgIcon(
+const Film = createSvgIcon(
   <svg
     width="24px"
     height="24px"
@@ -9,13 +9,37 @@ const Abacus = createSvgIcon(
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <circle
+      cx="12"
+      cy="8"
+      fill="currentColor"
+      r="2"
+    />
+    <circle
+      cx="8"
+      cy="12"
+      fill="currentColor"
+      r="2"
+    />
+    <circle
+      cx="16"
+      cy="12"
+      fill="currentColor"
+      r="2"
+    />
+    <circle
+      cx="12"
+      cy="16"
+      fill="currentColor"
+      r="2"
+    />
     <path
-      d="M21,2a1,1,0,0,0-1,1V6H16V5a1,1,0,0,0-2,0V6H12V5a1,1,0,0,0-2,0V6H8V5A1,1,0,0,0,6,5V6H4V3A1,1,0,0,0,2,3V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V3A1,1,0,0,0,21,2ZM20,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V16H6v1a1,1,0,0,0,2,0V16h2v1a1,1,0,0,0,2,0V16h4v1a1,1,0,0,0,2,0V16h2Zm0-5H18V13a1,1,0,0,0-2,0v1H12V13a1,1,0,0,0-2,0v1H8V13a1,1,0,0,0-2,0v1H4V8H6V9A1,1,0,0,0,8,9V8h2V9a1,1,0,0,0,2,0V8h2V9a1,1,0,0,0,2,0V8h4Z"
+      d="M12,2A10,10,0,0,0,6,20H2v2H12A10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
       fill="currentColor"
     />
   </svg>
   ,
-  "Abacus"
+  "Film"
 );
 
-export default Abacus;
+export default Film;

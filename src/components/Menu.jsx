@@ -2,18 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import {
-  CalendarMonthRounded as CalendarIcon,
-  EventAvailableRounded as EventsIcon,
   ExpandLessRounded as ExpandLessIcon,
   ExpandMoreRounded as ExpandMoreIcon,
-  GroupRounded as PeopleIcon,
-  HomeRounded as HomeIcon,
-  LibraryBooksRounded as ReportsIcon,
-  MeetingRoomRounded as ChurchMeetingsIcon,
-  SettingsRounded as SettingsIcon,
-  TrendingDownRounded as ExpensesIcon
+  UpcomingOutlined as UpcomingIcon
 } from "@mui/icons-material";
-import { Cube as AssetsIcon } from "./icons";
+import { Film as MoviesIcon, Home as HomeIcon, TvPlay as TvSeriesIcon } from "./icons/index";
 import { alpha } from "@mui/material/styles";
 
 const SingleLevelMenuItem = ({ item, color, setDrawerOpen, location, navigate }) => {
@@ -96,7 +89,7 @@ const MultiLevelMenuItem = ({ item, color, location, generateMenuTree }) => {
   );
 };
 
-const SideMenu = ({ highlightColor, setDrawerOpen, user, ...rest }) => {
+const Menu = ({ highlightColor, drawerOpen, setDrawerOpen, user, ...rest }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -106,118 +99,28 @@ const SideMenu = ({ highlightColor, setDrawerOpen, user, ...rest }) => {
     if (user) {
       setItems([
         {
-          title: "Dashboard",
+          title: "Home",
           icon: <HomeIcon />,
           to: "/dashboard",
           show: true,
         },
         {
-          title: "Members",
-          icon: <PeopleIcon />,
-          to: "/members",
-          show: user.privileges.members,
+          title: "Movies",
+          icon: <MoviesIcon />,
+          to: "/movies",
+          show: true,
         },
         {
-          title: "Calendar",
-          icon: <CalendarIcon />,
-          to: "/calendar",
-          show: user.privileges.calendar,
-          items: [
-            {
-              title: "Church Meetings",
-              icon: <ChurchMeetingsIcon />,
-              to: "/calendar/church-meetings",
-              show: user.privileges.calendar__church_meetings,
-            },
-            {
-              title: "Other Events",
-              icon: <EventsIcon />,
-              to: "/calendar/other-events",
-              show: user.privileges.calendar__other_events,
-            },
-          ],
+          title: "TV Series",
+          icon: <TvSeriesIcon />,
+          to: "/tv-series",
+          show: true,
         },
         {
-          title: "Assets",
-          icon: <AssetsIcon />,
-          to: "/assets",
-          show: user.privileges.assets,
-        },
-        {
-          title: "Users",
-          icon: <PeopleIcon />,
-          to: "/users",
-          show: user.privileges.users,
-        },
-        {
-          title: "Reports",
-          icon: <ReportsIcon />,
-          to: "/reports",
-          show: user.privileges.reports,
-          items: [
-            {
-              title: "Stock Summary Report",
-              icon: <ReportsIcon />,
-              to: "/reports/stock-summary",
-              show: user.privileges.reports__stock_summary,
-            },
-            {
-              title: "Expenses Report",
-              icon: <ReportsIcon />,
-              to: "/reports/expenses",
-              show: user.privileges.reports__expenses,
-            },
-          ],
-        },
-        {
-          title: "Settings",
-          icon: <SettingsIcon />,
-          to: "/settings",
-          show: user.privileges.settings,
-          items: [
-            {
-              title: "Registration Types",
-              icon: <SettingsIcon />,
-              to: "/settings/registration-types",
-              show: user.privileges.settings__registration_types,
-            },
-            {
-              title: "Member Statuses",
-              icon: <SettingsIcon />,
-              to: "/settings/member-statuses",
-              show: user.privileges.settings__member_statuses,
-            },
-            {
-              title: "Departments",
-              icon: <SettingsIcon />,
-              to: "/settings/departments",
-              show: user.privileges.settings__departments,
-            },
-            {
-              title: "Pledge Types",
-              icon: <SettingsIcon />,
-              to: "/settings/pledge-types",
-              show: user.privileges.settings__pledge_types,
-            },
-            {
-              title: "Payment Channels",
-              icon: <SettingsIcon />,
-              to: "/settings/payment-channels",
-              show: user.privileges.settings__payment_channels,
-            },
-            {
-              title: "Church Meeting Types",
-              icon: <SettingsIcon />,
-              to: "/settings/church-meeting-types",
-              show: user.privileges.settings__church_meeting_types,
-            },
-            {
-              title: "Church Meeting Roles",
-              icon: <SettingsIcon />,
-              to: "/settings/church-meeting-roles",
-              show: user.privileges.settings__church_meeting_roles,
-            },
-          ],
+          title: "Upcoming",
+          icon: <UpcomingIcon />,
+          to: "/upcoming",
+          show: true,
         },
       ]);
     } else {
@@ -255,7 +158,6 @@ const SideMenu = ({ highlightColor, setDrawerOpen, user, ...rest }) => {
   return (
     <List
       component="nav"
-      dense
       {...rest}
     >
       {generateMenuTree(items)}
@@ -263,13 +165,4 @@ const SideMenu = ({ highlightColor, setDrawerOpen, user, ...rest }) => {
   );
 };
 
-export {
-  HomeIcon,
-  CalendarIcon,
-  ChurchMeetingsIcon,
-  EventsIcon,
-  ExpensesIcon,
-  PeopleIcon,
-  AssetsIcon
-};
-export default SideMenu;
+export default Menu;

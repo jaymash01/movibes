@@ -2,22 +2,22 @@ import React, { useMemo, useState } from "react";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { ToastContextProvider } from "../contexts/ToastContext";
-import lightTheme from "../themes/light";
-import darkTheme from "../themes/dark";
+import { ToastContextProvider } from "./contexts/ToastContext";
 
-import AuthLayout from "../layouts/Auth";
-import DefaultLayout from "../layouts/Default";
-import Login from "../pages/auth/Login";
-import Dashboard from "../pages/dashboard/Dashboard";
-import MembersRoutes from "../pages/members/MembersRoutes";
-import CalendarRoutes from "../pages/calendar/CalendarRoutes";
-import Users from "../pages/users/Users";
-import ReportsRoutes from "../pages/reports/ReportsRoutes";
-import SettingsRoutes from "../pages/settings/SettingsRoutes";
+import lightTheme from "./themes/light";
+import darkTheme from "./themes/dark";
+
+import DefaultLayout from "./layouts/Default";
+import Login from "./pages/auth/Login";
+import SignUp from "./pages/auth/SignUp";
+import Dashboard from "./pages/Dashboard";
+import Movies from "./pages/movies/Movies";
+import MovieDetails from "./pages/movies/MovieDetails";
+import TVSeries from "./pages/TVSeries";
+import Upcoming from "./pages/movies/Upcoming";
 
 const App = () => {
-  const [themeMode, setThemeMode] = useState(window.localStorage.getItem("theme_mode") || "light");
+  const [themeMode, setThemeMode] = useState(window.localStorage.getItem("theme_mode") || "dark");
 
   const theme = useMemo(() => {
     return themeMode === "light" ? lightTheme : darkTheme;
@@ -31,15 +31,6 @@ const App = () => {
         <CssBaseline />
         <GlobalStyles
           styles={{
-            "html, body": {
-              ...(themeMode === "light" && {
-                backgroundImage: `url("/images/background.png")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                backgroundAttachment: "fixed",
-                backgroundSize: "cover",
-              }),
-            },
             ".MuiDrawer-paper": {
               scrollbarWidth: "thin",
             },
@@ -64,14 +55,13 @@ const App = () => {
               element={<Navigate to="/login"/>}
             />
             <Route
-              path="/"
-              element={<AuthLayout />}
-            >
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-            </Route>
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/sign-up"
+              element={<SignUp />}
+            />
             <Route
               path="/"
               element={(
@@ -87,28 +77,21 @@ const App = () => {
                   element={<Dashboard />}
                 />
                 <Route
-                  path="members/*"
-                  element={user && user.privileges.members ? <MembersRoutes /> : null}
+                  path="movies"
+                  exact
+                  element={<Movies />}
                 />
                 <Route
-                  path="calendar/*"
-                  element={user && user.privileges.calendar ? <CalendarRoutes /> : null}
+                  path="movies/:id"
+                  element={<MovieDetails />}
                 />
                 <Route
-                  path="assets"
-                  element={user && user.privileges.assets ? <div /> : null}
+                  path="tv-series"
+                  element={<TVSeries />}
                 />
                 <Route
-                  path="users"
-                  element={user && user.privileges.users ? <Users /> : null}
-                />
-                <Route
-                  path="reports/*"
-                  element={user && user.privileges.reports ? <ReportsRoutes /> : null}
-                />
-                <Route
-                  path="settings/*"
-                  element={user && user.privileges.settings ? <SettingsRoutes /> : null}
+                  path="upcoming"
+                  element={<Upcoming />}
                 />
               </React.Fragment>
             </Route>

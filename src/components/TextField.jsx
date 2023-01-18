@@ -77,7 +77,6 @@ class TextField extends React.Component {
                 mr: 1,
               }),
               ...(!horizontal && {
-                ml: 0.5,
                 mb: 0.5,
               }),
             }}
@@ -119,7 +118,6 @@ class TextField extends React.Component {
               variant="body2"
               sx={{
                 color: "error.main",
-                ml: 0.5,
                 mt: 0.25,
               }}
             >

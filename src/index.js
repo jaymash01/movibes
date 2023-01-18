@@ -1,10 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import axios from "axios";
+
+window.axios = axios;
+window.axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401 && window.location.href.indexOf("/login") === -1) {
+      localStorage.clear();
+      window.location.href = "/login";
+      return false;
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+window.APP_NAME = "Movibes";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />

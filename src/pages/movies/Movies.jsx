@@ -1,351 +1,195 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
   CardHeader,
-  Checkbox,
-  FormControlLabel,
+  Chip,
+  Divider,
   Grid,
+  Pagination,
+  PaginationItem,
   Skeleton,
+  Stack,
   Typography
 } from "@mui/material";
-import { InfoRounded as InfoIcon, PlayArrowRounded as PlayIcon } from "@mui/icons-material";
-import Modal from "../components/Modal";
-import PosterBase from "../components/PosterBase";
-import MovieCard from "../components/MovieCard";
-import { useFetch, useToast } from "../hooks/index";
-import { formatError } from "../helpers";
-import { BASE_POSTER_URL } from "../constants";
+import { ChevronLeftRounded as ChevronLeftIcon, ChevronRightRounded as ChevronRightIcon } from "@mui/icons-material";
 
-const Dashboard = () => {
+import Modal from "../../components/Modal";
+import MovieCard from "../../components/MovieCard";
+import Select from "../../components/Select";
+import { useFetch, useToast } from "../../hooks";
+import { formatError, getReleaseDate, getYearOptions } from "../../helpers";
+
+const Movies = () => {
 
   const addToast = useToast();
-
+  const navigate = useNavigate();
   const modalRef = useRef();
 
+  const [filterGenres, setFilterGenres] = useState([]);
+
   const [params, setParams] = useState({
-    //genres: [],
+    page: 1,
+    year: undefined,
+    genre_ids: undefined,
   });
 
-  const { data: nowPlaying, loading: loadingNowPlaying, error: errorLoadingNowPlaying } = useFetch("movie/now_playing", null, true, null, (response) => response.data.results[0]);
-  const { data: genres, loading: loadingGenres } = useFetch("genre/movie/list", params, true, [], (response) => response.data.genres);
-  const { data: trending, loading: loadingTrending, error: errorLoadingTrending } = useFetch("movie/popular", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
-  const { data: upcoming, loading: loadingUpcoming, error: errorLoadingUpcoming } = useFetch("movie/upcoming", params, true, [], (response) => response.data.results.filter((e, i) => i < 4));
+  const { data: genres } = useFetch("genre/movie/list", {
+    ...params,
+    genre_ids: filterGenres.join(","),
+  }, true, [], (response) => response.data.genres);
+  const {
+    data,
+    loading,
+    error,
+    handleFetch
+  } = useFetch("discover/movie", params, true, { page: 1, results: [] }, (response) => response.data);
 
   useEffect(() => {
-    document.title = `Dashboard - ${window.APP_NAME}`;
+    document.title = `Movies - ${window.APP_NAME}`;
   }, []);
 
   useEffect(() => {
-    if (errorLoadingNowPlaying) {
-      addToast({ message: formatError(errorLoadingNowPlaying), severity: "error" });
+    if (error) {
+      addToast({ message: formatError(error), severity: "error" });
     }
-  }, [errorLoadingNowPlaying]);
+  }, [error]);
 
-  useEffect(() => {
-    if (errorLoadingTrending) {
-      addToast({ message: formatError(errorLoadingTrending), severity: "error" });
+  const toggleGenre = (genre) => {
+    if (filterGenres.indexOf(genre.id) !== -1) {
+      setFilterGenres(filterGenres.filter((e) => e !== genre.id));
+    } else {
+      setFilterGenres([...filterGenres, genre.id]);
     }
-  }, [errorLoadingTrending]);
-
-  useEffect(() => {
-    if (errorLoadingUpcoming) {
-      addToast({ message: formatError(errorLoadingUpcoming), severity: "error" });
-    }
-  }, [errorLoadingUpcoming]);
+  };
 
   return (
     <React.Fragment>
+      <CardHeader
+        title="Movies"
+        titleTypographyProps={{
+          variant: "h5",
+          fontWeight: 500,
+        }}
+        sx={{ px: 0 }}
+      />
+
+      <Stack
+        direction="row"
+        flexWrap="wrap"
+        gap={1}
+        mb={2}
+      >
+        {genres.map((e) => (
+          <Chip
+            key={e.id}
+            label={e.name}
+            color={filterGenres.indexOf(e.id) !== -1 ? "primary" : "default" }
+            onClick={() => toggleGenre(e)}/>
+        ))}
+        <Select
+          fullWidth
+          placeholder="Year"
+          options={getYearOptions()}
+          clearable
+          value={params.year || null}
+          sx={{ "& .MuiInputBase-root.MuiInputBase-sizeSmall": { py: "4px" } }}
+          onChange={(value) => setParams({ ...params, year: value })}
+        />
+      </Stack>
+
       <Grid
         container
-        spacing={{ xs: 2, sm: 2, md: 3 }}
+        spacing={2}
       >
-        <Grid
-          item
-          md={8}
-          sm={12}
-          xs={12}
-        >
-          {loadingNowPlaying ?
-            <Skeleton
-              variant="rounded"
-              height={320}
-            />
-            : null
-          }
-          {nowPlaying ?
-            <Card sx={{ height: 320 }}>
-              <PosterBase
-                path={`${BASE_POSTER_URL + nowPlaying.poster_path}`}
-                minHeight={320}
+        {data.results.map((e) => (
+          <Grid
+            key={e.id}
+            item
+            md={3}
+            sm={6}
+            xs={12}
+          >
+            <MovieCard
+              movie={e}
+              onClick={() => navigate(`/movies/${e.id}`)}
+            >
+              <Box
+                mt={1}
+                px={2}
               >
-                <Box
-                  position="absolute"
-                  bottom={16}
-                  right={16}
-                  display="flex"
-                  flexDirection="row"
-                  gap={2}
-                  sx={{
-                    "& .MuiButton-root": {
-                      bgcolor: "rgba(0, 0, 0, 0.72)",
-                    }
-                  }}
+                <Typography
+                  variant="subtitle1"
+                  noWrap
+                  color="text.primary"
                 >
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    size="large"
-                    startIcon={<PlayIcon />}
-                  >
-                    Play
-                  </Button>
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    size="large"
-                    startIcon={<InfoIcon />}
-                  >
-                    More info
-                  </Button>
-                </Box>
-              </PosterBase>
-            </Card>
-            : null
-          }
-
-          {loadingTrending ?
-            <Skeleton
-              variant="rounded"
-              height={360}
-            />
-            : null
-          }
-          {trending.length ?
-            <React.Fragment>
-              <CardHeader
-                title="Trending"
-                titleTypographyProps={{
-                  variant: "h5",
-                  fontWeight: 500,
-                }}
-                action={(
-                  <Button
-                    color="neutral"
-                    sx={{ textTransform: "none" }}
-                  >
-                    View all
-                  </Button>
-                )}
-              />
-              <Grid
-                container
-                spacing={2}
-              >
-                {trending.map((e) => (
-                  <Grid
-                    key={e.id}
-                    item
-                    md={3}
-                    sm={6}
-                    xs={12}
-                  >
-                    <MovieCard movie={e}/>
-                  </Grid>
-                ))}
-              </Grid>
-            </React.Fragment>
-            : null
-          }
-
-          {loadingUpcoming ?
-            <Skeleton
-              variant="rounded"
-              height={360}
-            />
-            : null
-          }
-          {upcoming.length ?
-            <React.Fragment>
-              <CardHeader
-                title="Upcoming"
-                titleTypographyProps={{
-                  variant: "h5",
-                  fontWeight: 500,
-                }}
-                action={(
-                  <Button
-                    color="neutral"
-                    sx={{ textTransform: "none" }}
-                  >
-                    View all
-                  </Button>
-                )}
-              />
-              <Grid
-                container
-                spacing={2}
-              >
-                {upcoming.map((e) => (
-                  <Grid
-                    key={e.id}
-                    item
-                    md={3}
-                    sm={6}
-                    xs={12}
-                  >
-                    <MovieCard movie={e}/>
-                  </Grid>
-                ))}
-              </Grid>
-            </React.Fragment>
-            : null
-          }
-        </Grid>
-
-        <Grid
-          item
-          md={4}
-          sm={12}
-          xs={12}
-        >
-          {loadingGenres ?
-            <Skeleton
-              variant="rounded"
-              height={200}
-            />
-            : null
-          }
-          {genres.length ?
-            <React.Fragment>
-              <Card>
-                <CardHeader
-                  title="Categories"
-                  titleTypographyProps={{
-                    variant: "h6",
-                    fontWeight: 500,
-                  }}
-                  action={(
-                    <Button
-                      color="neutral"
-                      sx={{ textTransform: "none" }}
-                    >
-                      Check all
-                    </Button>
-                  )}
-                  sx={{ px: 3 }}
-                />
-                <CardContent sx={{ px: 3 }}>
-                  {genres.filter((e, i) => i < 5).map((e) => (
-                    <FormControlLabel
-                      key={e.id}
-                      control={(
-                        <Checkbox
-                          size="small"
-                          onChange={(event) => event}
-                        />
-                      )}
-                      label={(
-                        <Typography
-                          variant="body2"
-                          sx={{ cursor: "pointer" }}
-                          onClick={(event) => event}
-                        >
-                          {e.name}
-                        </Typography>
-                      )}
-                      sx={{
-                        width: "100%",
-                        display: "flex",
-                        borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-                      }}
-                    />
-                  ))}
-                </CardContent>
-                <CardActions sx={{ mt: -2 }}>
-                  <Box flexGrow={1}/>
-                  <Button
-                    color="neutral"
-                    sx={{ textTransform: "none" }}
-                  >
-                    See more
-                  </Button>
-                  <Box flexGrow={1}/>
-                </CardActions>
-              </Card>
-            </React.Fragment>
-            : null
-          }
-
-          <Card sx={{ mt: 2 }}>
-            <CardHeader
-              title="Services"
-              titleTypographyProps={{
-                variant: "h6",
-                fontWeight: 500,
-              }}
-              action={(
-                <Button
-                  color="neutral"
-                  sx={{ textTransform: "none" }}
-                >
-                  Check all
-                </Button>
-              )}
-              sx={{ px: 3 }}
-            />
-            <CardContent sx={{ px: 3 }}>
-              {[
-                { id: 1, name: "Netflix" },
-                { id: 2, name: "HBO" },
-                { id: 3, name: "Netflix" },
-                { id: 4, name: "HBO" },
-                { id: 5, name: "Netflix" }
-              ].map((e) => (
-                <FormControlLabel
-                  key={e.id}
-                  control={(
-                    <Checkbox
-                      size="small"
-                      onChange={(event) => event}
+                  {e.original_title}
+                </Typography>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  divider={(
+                    <Divider
+                      orientation="vertical"
+                      sx={{ height: (theme) => theme.spacing(2) }}
                     />
                   )}
-                  label={(
-                    <Typography
-                      variant="body2"
-                      sx={{ cursor: "pointer" }}
-                      onClick={(event) => event}
-                    >
-                      {e.name}
-                    </Typography>
-                  )}
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-                  }}
-                />
-              ))}
-            </CardContent>
-            <CardActions sx={{ mt: -2 }}>
-              <Box flexGrow={1}/>
-              <Button
-                color="neutral"
-                sx={{ textTransform: "none" }}
+                >
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {getReleaseDate(e.release_date)}
+                  </Typography>
+                </Stack>
+              </Box>
+            </MovieCard>
+          </Grid>
+        ))}
+
+        {loading ?
+          <React.Fragment>
+            {[1, 2, 3, 4].map((e) => (
+              <Grid
+                key={e}
+                item
+                md={3}
+                sm={6}
+                xs={12}
               >
-                See more
-              </Button>
-              <Box flexGrow={1}/>
-            </CardActions>
-          </Card>
-        </Grid>
+                <Skeleton
+                  variant="rounded"
+                  height={320}
+                />
+              </Grid>
+            ))}
+          </React.Fragment>
+          : null
+        }
       </Grid>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        mt={3}
+      >
+        <Pagination
+          page={data.page}
+          count={data.total_pages}
+          boundaryCount={3}
+          shape="rounded"
+          color="primary"
+          onChange={(event, page) => setParams({ ...params, page })}
+          renderItem={(item) => (
+            <PaginationItem
+              slots={{ previous: ChevronLeftIcon, next: ChevronRightIcon }}
+              {...item}
+            />
+          )}
+        />
+      </Stack>
       <Modal ref={modalRef}/>
     </React.Fragment>
   );
 };
 
-export default Dashboard;
+export default Movies;

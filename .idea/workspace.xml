@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c785f3df-a482-4206-8dae-375cfc3bd490" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layouts/Default.jsx" afterPath="$PROJECT_DIR$/src/layouts/Default.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Default.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Default.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/layouts/Default.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="67" column="45" lean-forward="false" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
+            <state relative-caret-position="81">
+              <caret line="58" column="2" lean-forward="true" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -114,18 +114,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-816">
-              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dashboard.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/Dashboard.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="205" column="45" lean-forward="false" selection-start-line="205" selection-start-column="45" selection-end-line="205" selection-end-column="45" />
+            <state relative-caret-position="360">
+              <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -212,11 +202,11 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/App.jsx" />
-        <option value="$PROJECT_DIR$/src/layouts/Default.jsx" />
         <option value="$PROJECT_DIR$/src/components/PosterBase.jsx" />
         <option value="$PROJECT_DIR$/src/components/MovieCard.jsx" />
         <option value="$PROJECT_DIR$/src/components/Search.jsx" />
         <option value="$PROJECT_DIR$/src/pages/Dashboard.jsx" />
+        <option value="$PROJECT_DIR$/src/layouts/Default.jsx" />
       </list>
     </option>
   </component>
@@ -611,12 +601,12 @@
       <workItem from="1673965363385" duration="4232000" />
       <workItem from="1673972953623" duration="28478000" />
       <workItem from="1674030155304" duration="4257000" />
-      <workItem from="1674034611558" duration="1132000" />
+      <workItem from="1674034611558" duration="1816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76115000" />
+    <option name="totallyTimeSpent" value="76799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1934" height="1038" extended-state="0" />
@@ -957,16 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/layouts/Default.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="67" column="45" lean-forward="false" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -997,19 +977,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/src/pages/Dashboard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        <state relative-caret-position="192">
+          <caret line="202" column="25" lean-forward="true" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Dashboard.jsx">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="205" column="45" lean-forward="false" selection-start-line="205" selection-start-column="45" selection-end-line="205" selection-end-column="45" />
+        <state relative-caret-position="360">
+          <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layouts/Default.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="58" column="2" lean-forward="true" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

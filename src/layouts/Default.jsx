@@ -172,7 +172,7 @@ const Default = ({ setThemeMode }) => {
                 component="img"
                 src={logo}
                 alt="Logo"
-                height={{ xs: 20, sm: 28, md: 32 }}
+                height={{ xs: 18, sm: 28, md: 32 }}
                 display={{ xs: "block", sm: "block", md: "none" }}
               />
 

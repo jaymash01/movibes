@@ -31,6 +31,7 @@ import Menu from "../components/Menu";
 import Search from "../components/Search";
 import Modal from "../components/Modal";
 import logo from "../images/logo.png";
+import avatar from "../images/avatar.jpg";
 import darkTheme from "../themes/dark";
 
 const drawerWidth = 240;
@@ -202,7 +203,7 @@ const Default = ({ setThemeMode }) => {
               <Avatar>
                 <Box
                   component="img"
-                  src="/images/avatar.jpg"
+                  src={avatar}
                   alt=""
                 />
               </Avatar>
@@ -234,7 +235,7 @@ const Default = ({ setThemeMode }) => {
                   alt="Logo"
                   height={28}
                 />
-                <Box flexGrow={1} />
+                <Box flexGrow={1}/>
                 <Tooltip title="Close menu">
                   <IconButton
                     sx={{ mr: -1 }}

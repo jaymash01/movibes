@@ -120,7 +120,7 @@ const Search = ({ containerProps }) => {
           <SearchIcon />
         </SearchIconContainer>
         <SearchInputBase
-          placeholder="Search for movies, TV shows…"
+          placeholder="Search for movies, TV series…"
           autoComplete="off"
           inputProps={{ ...getInputProps() }}
           loading={loading}

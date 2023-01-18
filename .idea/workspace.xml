@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c785f3df-a482-4206-8dae-375cfc3bd490" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/Table.jsx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/PosterBase.jsx" afterPath="$PROJECT_DIR$/src/components/PosterBase.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/MovieCard.jsx" afterPath="$PROJECT_DIR$/src/components/MovieCard.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,13 +63,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menu.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Menu.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="107" column="20" lean-forward="false" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+            <state relative-caret-position="384">
+              <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieCard.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/MovieCard.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/components/TextField.jsx" />
         <option value="$PROJECT_DIR$/src/components/Select.jsx" />
         <option value="$PROJECT_DIR$/src/pages/movies/MoviesRoutes.jsx" />
-        <option value="$PROJECT_DIR$/src/components/MovieCard.jsx" />
         <option value="$PROJECT_DIR$/src/components/Search.jsx" />
         <option value="$PROJECT_DIR$/src/pages/TVSeries.jsx" />
         <option value="$PROJECT_DIR$/src/pages/movies/Upcoming.jsx" />
@@ -185,6 +194,7 @@
         <option value="$PROJECT_DIR$/src/App.jsx" />
         <option value="$PROJECT_DIR$/src/layouts/Default.jsx" />
         <option value="$PROJECT_DIR$/src/components/PosterBase.jsx" />
+        <option value="$PROJECT_DIR$/src/components/MovieCard.jsx" />
       </list>
     </option>
   </component>
@@ -579,12 +589,12 @@
       <workItem from="1673965363385" duration="4232000" />
       <workItem from="1673972953623" duration="28478000" />
       <workItem from="1674030155304" duration="4257000" />
-      <workItem from="1674034611558" duration="73000" />
+      <workItem from="1674034611558" duration="243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75056000" />
+    <option name="totallyTimeSpent" value="75226000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1934" height="1038" extended-state="0" />
@@ -597,7 +607,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48945615" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163152" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -938,7 +948,7 @@
         <state relative-caret-position="336">
           <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -963,22 +973,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/MovieCard.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+        <state relative-caret-position="384">
+          <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/MovieCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="107" column="20" lean-forward="false" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+        <state relative-caret-position="504">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

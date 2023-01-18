@@ -12,8 +12,8 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   "&:hover, &.Mui-focusVisible": {
     "& .MuiImageBackdrop-root": {
       backgroundColor: "rgba(0, 0, 0, 0.72)",
-    },
-  },
+    }
+  }
 }));
 
 const MovieCard = ({ movie, containerProps, onClick, children }) => {
@@ -23,7 +23,7 @@ const MovieCard = ({ movie, containerProps, onClick, children }) => {
       <Card sx={{ height: 320 }}>
         <ImageButton onClick={onClick}>
           <PosterBase
-            path={`${BASE_POSTER_URL + movie.poster_path}`}
+            path={BASE_POSTER_URL + movie.poster_path}
             width="inherit"
             height="inherit"
           >

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Box, ThemeProvider } from "@mui/material";
 
 import darkTheme from "../themes/dark";

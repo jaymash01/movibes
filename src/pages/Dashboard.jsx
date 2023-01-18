@@ -203,7 +203,7 @@ const Dashboard = () => {
                   <Button
                     color="neutral"
                     sx={{ textTransform: "none" }}
-                    onClick={() => navigate("/movies/upcoming")}
+                    onClick={() => navigate("/upcoming")}
                   >
                     View all
                   </Button>

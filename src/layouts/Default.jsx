@@ -300,7 +300,7 @@ const Default = ({ setThemeMode }) => {
                       <TicketIcon />
                     </PromotionIconContainer>
 
-                    <Typography variant="subtitle1">
+                    <Typography variant="subtitle2">
                       Play movie quizzes and earn free tickets
                     </Typography>
                     <Typography

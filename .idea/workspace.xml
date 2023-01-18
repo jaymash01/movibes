@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c785f3df-a482-4206-8dae-375cfc3bd490" name="Default" comment="" />
+    <list default="true" id="c785f3df-a482-4206-8dae-375cfc3bd490" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layouts/Default.jsx" afterPath="$PROJECT_DIR$/src/layouts/Default.jsx" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -28,7 +31,7 @@
       <file leaf-file-name="SignUp.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/auth/SignUp.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3312">
+            <state relative-caret-position="2880">
               <caret line="138" column="12" lean-forward="false" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="12" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
@@ -40,8 +43,8 @@
       <file leaf-file-name="Default.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/layouts/Default.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8389">
-              <caret line="368" column="14" lean-forward="true" selection-start-line="368" selection-start-column="14" selection-end-line="368" selection-end-column="14" />
+            <state relative-caret-position="451">
+              <caret line="312" column="0" lean-forward="true" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -52,7 +55,7 @@
       <file leaf-file-name="Movies.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/movies/Movies.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
+            <state relative-caret-position="1560">
               <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
@@ -64,7 +67,7 @@
       <file leaf-file-name="Menu.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="2568">
               <caret line="116" column="21" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
@@ -76,10 +79,33 @@
       <file leaf-file-name="Search.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Search.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
+            <state relative-caret-position="1776">
               <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
+                <marker date="1674042480635" expanded="true" signature="460:820" ph="{&quot;position&quot;: &quot;relative&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="797:818" ph="{&quot;width&quot;: &quot;350px&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="883:1077" ph="{&quot;height&quot;: &quot;100%&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="1152:1347" ph="{&quot;height&quot;: &quot;100%&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="1472:1889" ph="{&quot;color&quot;: &quot;inherit&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="1521:1887" ph="{&quot;paddingLeft&quot;: `calc(1em + ${theme.spacing(4)})`...}" />
+                <marker date="1674042480635" expanded="true" signature="1686:1748" ph="{&quot;paddingRight&quot;: `calc(1em + ${theme.spacing(3)})`...}" />
+                <marker date="1674042480635" expanded="true" signature="1855:1883" ph="{&quot;width&quot;: &quot;30ch&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="1940:2170" ph="{&quot;position&quot;: &quot;absolute&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="2101:2168" ph="{...}" />
+                <marker date="1674042480635" expanded="true" signature="2214:4071" ph="{...}" />
+                <marker date="1674042480635" expanded="true" signature="2291:2311" ph="{&quot;query&quot;: &quot;&quot;...}" />
+                <marker date="1674042480635" expanded="true" signature="2593:2942" ph="{&quot;options&quot;: data...}" />
+                <marker date="1674042480635" expanded="true" signature="2770:2845" ph="{...}" />
+                <marker date="1674042480635" expanded="true" signature="2789:2839" ph="{...}" />
+                <marker date="1674042480635" expanded="true" signature="2961:4064" ph="&lt;Box/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3026:3590" ph="&lt;SearchContainer/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3072:3149" ph="&lt;SearchIconContainer/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3158:3331" ph="&lt;SearchInputBase/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3361:3538" ph="&lt;SearchLoadingIndicatorContainer/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3407:3493" ph="&lt;CircularProgress/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3636:4037" ph="&lt;Listbox/&gt;" />
+                <marker date="1674042480635" expanded="true" signature="3775:4004" ph="&lt;ListItemButton/&gt;" />
               </folding>
             </state>
           </provider>
@@ -88,7 +114,7 @@
       <file leaf-file-name="MovieCard.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/MovieCard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="1248">
               <caret line="57" column="10" lean-forward="false" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -100,7 +126,7 @@
       <file leaf-file-name="App.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2424">
+            <state relative-caret-position="2040">
               <caret line="101" column="4" lean-forward="false" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
@@ -112,7 +138,7 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="1248">
               <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
               <folding />
             </state>
@@ -243,7 +269,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -474,6 +499,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -600,24 +626,24 @@
       <workItem from="1673972953623" duration="28478000" />
       <workItem from="1674030155304" duration="4257000" />
       <workItem from="1674034611558" duration="2522000" />
+      <workItem from="1674043405570" duration="142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77505000" />
+    <option name="totallyTimeSpent" value="77647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1934" height="1038" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163152" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163152" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -816,7 +842,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/movies/Movies.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
+        <state relative-caret-position="1560">
           <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
@@ -903,7 +929,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/auth/SignUp.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3312">
+        <state relative-caret-position="2880">
           <caret line="138" column="12" lean-forward="false" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="12" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
@@ -927,7 +953,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2424">
+        <state relative-caret-position="2040">
           <caret line="101" column="4" lean-forward="false" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
@@ -947,7 +973,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Menu.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="2568">
           <caret line="116" column="21" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
@@ -957,7 +983,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MovieCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="1248">
           <caret line="57" column="10" lean-forward="false" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -967,10 +993,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Search.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
+        <state relative-caret-position="1776">
           <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
+            <marker date="1674042480635" expanded="true" signature="460:820" ph="{&quot;position&quot;: &quot;relative&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="797:818" ph="{&quot;width&quot;: &quot;350px&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="883:1077" ph="{&quot;height&quot;: &quot;100%&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="1152:1347" ph="{&quot;height&quot;: &quot;100%&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="1472:1889" ph="{&quot;color&quot;: &quot;inherit&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="1521:1887" ph="{&quot;paddingLeft&quot;: `calc(1em + ${theme.spacing(4)})`...}" />
+            <marker date="1674042480635" expanded="true" signature="1686:1748" ph="{&quot;paddingRight&quot;: `calc(1em + ${theme.spacing(3)})`...}" />
+            <marker date="1674042480635" expanded="true" signature="1855:1883" ph="{&quot;width&quot;: &quot;30ch&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="1940:2170" ph="{&quot;position&quot;: &quot;absolute&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="2101:2168" ph="{...}" />
+            <marker date="1674042480635" expanded="true" signature="2214:4071" ph="{...}" />
+            <marker date="1674042480635" expanded="true" signature="2291:2311" ph="{&quot;query&quot;: &quot;&quot;...}" />
+            <marker date="1674042480635" expanded="true" signature="2593:2942" ph="{&quot;options&quot;: data...}" />
+            <marker date="1674042480635" expanded="true" signature="2770:2845" ph="{...}" />
+            <marker date="1674042480635" expanded="true" signature="2789:2839" ph="{...}" />
+            <marker date="1674042480635" expanded="true" signature="2961:4064" ph="&lt;Box/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3026:3590" ph="&lt;SearchContainer/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3072:3149" ph="&lt;SearchIconContainer/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3158:3331" ph="&lt;SearchInputBase/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3361:3538" ph="&lt;SearchLoadingIndicatorContainer/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3407:3493" ph="&lt;CircularProgress/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3636:4037" ph="&lt;Listbox/&gt;" />
+            <marker date="1674042480635" expanded="true" signature="3775:4004" ph="&lt;ListItemButton/&gt;" />
           </folding>
         </state>
       </provider>
@@ -985,7 +1034,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="1248">
           <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
           <folding />
         </state>
@@ -993,8 +1042,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/layouts/Default.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8389">
-          <caret line="368" column="14" lean-forward="true" selection-start-line="368" selection-start-column="14" selection-end-line="368" selection-end-column="14" />
+        <state relative-caret-position="451">
+          <caret line="312" column="0" lean-forward="true" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>

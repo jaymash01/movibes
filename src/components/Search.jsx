@@ -74,7 +74,7 @@ const Listbox = styled(Paper)(({ theme }) => ({
   maxHeight: 200,
   "& .MuiListItemButton-root.Mui-focused": {
     backgroundColor: alpha(theme.palette.primary.main, 0.08),
-  },
+  }
 }));
 
 const Search = ({ containerProps }) => {

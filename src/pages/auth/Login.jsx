@@ -155,7 +155,7 @@ const LogIn = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formRef.current.validate()) {
-      navigate("/movies");
+      navigate("/dashboard");
     }
   };
 

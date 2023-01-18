@@ -17,6 +17,7 @@ import TextField from "../../components/TextField";
 import logo from "../../images/logo.png";
 import useFetch from "../../hooks/useFetch";
 import { BASE_POSTER_URL } from "../../constants";
+
 const Descriptions = () => {
 
   const { data: popular } = useFetch("movie/popular", null, true, null, (response) => response.data.results[0]);
@@ -125,7 +126,7 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formRef.current.validate()) {
-      navigate("/movies");
+      navigate("/dashboard");
     }
   };
 

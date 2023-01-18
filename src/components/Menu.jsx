@@ -17,7 +17,7 @@ const SingleLevelMenuItem = ({ item, color, setDrawerOpen, location, navigate })
       onClick={() => {
         navigate(item.to);
         if (typeof setDrawerOpen === "function") {
-          setDrawerOpen(false);
+          setDrawerOpen(true); // `true` for temporary drawer as the `open` prop is set to !isDrawerOpen
         }
       }}
       sx={{

@@ -19,7 +19,7 @@ import {
   Typography,
   useMediaQuery
 } from "@mui/material";
-import { LightModeOutlined as LightModeIcon } from "@mui/icons-material";
+import { CloseRounded as CloseIcon, LightModeOutlined as LightModeIcon } from "@mui/icons-material";
 import {
   Menu as MenuIcon,
   Moon as DarkModeIcon,
@@ -55,13 +55,13 @@ const drawerClosedMixin = (theme) => ({
 });
 
 const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
+  //zIndex: theme.zIndex.drawer - 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    zIndex: theme.zIndex.drawer - 1,
+    zIndex: theme.zIndex.drawer + 1,
     [theme.breakpoints.up("md")]: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
@@ -171,7 +171,7 @@ const Default = ({ setThemeMode }) => {
                 component="img"
                 src={logo}
                 alt="Logo"
-                height={24}
+                height={{ xs: 20, sm: 28, md: 32 }}
                 display={{ xs: "block", sm: "block", md: "none" }}
               />
 
@@ -234,6 +234,15 @@ const Default = ({ setThemeMode }) => {
                   alt="Logo"
                   height={28}
                 />
+                <Box flexGrow={1} />
+                <Tooltip title="Close menu">
+                  <IconButton
+                    sx={{ mr: -1 }}
+                    onClick={toggleDrawer}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Tooltip>
               </Toolbar>
               <Menu
                 highlightColor={theme.palette.primary.main}
@@ -292,7 +301,7 @@ const Default = ({ setThemeMode }) => {
                     </PromotionIconContainer>
 
                     <Typography variant="subtitle1">
-                      Play movie quizes and earn free tickets
+                      Play movie quizzes and earn free tickets
                     </Typography>
                     <Typography
                       variant="body2"
